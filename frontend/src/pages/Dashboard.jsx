@@ -118,6 +118,24 @@ export default function Dashboard() {
             <Hero3D />
             <div className="pointer-events-none absolute inset-0 scanlines opacity-25" />
             <div className="pointer-events-none absolute inset-0" style={{ background: "radial-gradient(ellipse at center, transparent 55%, rgba(5,5,5,0.6) 100%)" }} />
+
+            {/* Quote overlay */}
+            <div className="absolute inset-0 flex items-center pointer-events-none">
+              <div className="pl-10 sm:pl-14 max-w-xl">
+                <div className="font-mono text-[10px] uppercase tracking-widest text-cyan-400 mb-3 flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 bg-cyan-400 rounded-full animate-pulse" />
+                  Operator Directive
+                </div>
+                <blockquote className="font-display font-bold text-2xl sm:text-3xl leading-[1.1] tracking-tight text-white drop-shadow-[0_2px_20px_rgba(0,0,0,0.9)]">
+                  "Trust <span className="text-red-500 glow-threat">nothing</span>.
+                  <br />
+                  Verify <span className="text-cyan-400 glow-neon">everything</span>."
+                </blockquote>
+                <div className="mt-4 font-mono text-[10px] uppercase tracking-widest text-slate-400">
+                  — DeepGuard AI · Forensic Ops Doctrine
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
