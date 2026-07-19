@@ -50,14 +50,14 @@ export default function Landing() {
               Multi-Modal Forensic Detection · Claude Sonnet 4.5
             </div>
             <h1 className="font-display font-bold text-4xl sm:text-5xl lg:text-6xl leading-[1.05] tracking-tight drop-shadow-[0_2px_20px_rgba(0,0,0,0.9)]">
-              See through the <span className="text-red-500 glow-threat">synthetic</span>.
+              AI can fake anything.
               <br />
-              Every frame. Every voice.
+              <span className="text-cyan-400 glow-neon">We prove what's real.</span>
             </h1>
             <p className="mt-6 text-slate-300 text-base max-w-xl leading-relaxed">
-              DeepGuard AI is a forensic-grade deepfake detection console. Analyze webcam
-              streams, video uploads and audio artifacts in real time with a threat-intel
-              grade verdict pipeline.
+              Forensic-grade multi-modal deepfake detection across webcam streams,
+              video uploads, photos and audio. Verdict, artifact list and reasoning
+              in under a second.
             </p>
             <div className="mt-10 flex flex-wrap items-center gap-4">
               <button
