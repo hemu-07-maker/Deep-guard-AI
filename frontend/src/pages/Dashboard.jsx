@@ -4,6 +4,7 @@ import { Camera, CameraOff, Save, ScanFace, Loader2 } from "lucide-react";
 import { api } from "@/lib/api";
 import { Verdict, Metric, Gauge } from "@/components/DetectionWidgets";
 import HudFrame from "@/components/HudFrame";
+import Hero3D from "@/components/Hero3D";
 
 const TICK_MS = 2600;
 
@@ -100,15 +101,8 @@ export default function Dashboard() {
 
   return (
     <div className="max-w-[1400px] mx-auto">
-      {/* Welcome / Console Preview banner */}
+      {/* Live 3D console preview */}
       <section className="mb-8">
-        <div className="mb-4">
-          <div className="font-mono text-[10px] uppercase tracking-widest text-cyan-400">// 00 · Welcome</div>
-          <h2 className="font-display font-bold text-2xl sm:text-3xl mt-1">The interface, in the wild.</h2>
-          <p className="text-slate-400 text-sm mt-2 max-w-2xl">
-            A live snapshot of the DeepGuard AI operator console — 3D identity mesh, telemetry rings and threat particles orbiting the target under analysis.
-          </p>
-        </div>
         <div className="panel-strong relative overflow-hidden">
           <div className="h-9 border-b border-white/10 bg-black/60 flex items-center gap-2 px-4">
             <span className="w-2.5 h-2.5 rounded-full bg-red-500/70" />
@@ -120,14 +114,9 @@ export default function Dashboard() {
               </div>
             </div>
           </div>
-          <div className="relative">
-            <img
-              src="/uploads/user_asset.png"
-              alt="DeepGuard AI console preview"
-              className="w-full block"
-              data-testid="dashboard-console-preview"
-            />
-            <div className="pointer-events-none absolute inset-0 scanlines opacity-20" />
+          <div className="relative aspect-[21/9] bg-black overflow-hidden" data-testid="dashboard-hero-3d">
+            <Hero3D />
+            <div className="pointer-events-none absolute inset-0 scanlines opacity-25" />
             <div className="pointer-events-none absolute inset-0" style={{ background: "radial-gradient(ellipse at center, transparent 55%, rgba(5,5,5,0.6) 100%)" }} />
           </div>
         </div>

@@ -89,7 +89,7 @@ export default function Layout() {
           <div className="flex items-center gap-3">
             <Radio className="w-3.5 h-3.5 text-red-500 animate-pulse" />
             <span className="font-mono text-[11px] uppercase tracking-widest text-slate-400">
-              SYSTEM ONLINE // CLAUDE-SONNET-4.5 // WEB-CONSOLE
+              SYSTEM ONLINE // WEB-CONSOLE
             </span>
             <span className="hidden md:inline font-mono text-[11px] uppercase tracking-widest text-cyan-400/80">
               · TRACE ACTIVE
