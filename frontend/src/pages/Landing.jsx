@@ -118,6 +118,41 @@ export default function Landing() {
         </div>
       </section>
 
+      {/* CONSOLE PREVIEW */}
+      <section className="relative py-24 px-8 max-w-7xl mx-auto">
+        <div className="flex items-end justify-between mb-10">
+          <div>
+            <div className="font-mono text-[10px] uppercase tracking-widest text-cyan-400 mb-3">// 03 · Console Preview</div>
+            <h2 className="font-display font-bold text-3xl sm:text-4xl">The interface, in the wild.</h2>
+            <p className="text-slate-400 mt-3 max-w-xl text-sm">A live snapshot of the DeepGuard AI operator console — 3D identity mesh, telemetry rings and threat particles orbiting the target under analysis.</p>
+          </div>
+        </div>
+
+        <div className="panel-strong relative overflow-hidden">
+          {/* Fake browser chrome */}
+          <div className="h-9 border-b border-white/10 bg-black/60 flex items-center gap-2 px-4">
+            <span className="w-2.5 h-2.5 rounded-full bg-red-500/70" />
+            <span className="w-2.5 h-2.5 rounded-full bg-yellow-400/70" />
+            <span className="w-2.5 h-2.5 rounded-full bg-green-400/70" />
+            <div className="ml-4 flex-1 flex justify-center">
+              <div className="font-mono text-[10px] uppercase tracking-widest text-slate-400 border border-white/10 bg-black/60 px-3 py-1">
+                deepguard.ai / console
+              </div>
+            </div>
+          </div>
+          <div className="relative">
+            <img
+              src="/uploads/user_asset.png"
+              alt="DeepGuard AI console preview"
+              className="w-full block"
+              data-testid="console-preview-image"
+            />
+            <div className="pointer-events-none absolute inset-0 scanlines opacity-20" />
+            <div className="pointer-events-none absolute inset-0" style={{ background: "radial-gradient(ellipse at center, transparent 55%, rgba(5,5,5,0.55) 100%)" }} />
+          </div>
+        </div>
+      </section>
+
       {/* CTA */}
       <section className="relative py-24 px-8 max-w-4xl mx-auto text-center">
         <div className="panel p-12 relative overflow-hidden">
