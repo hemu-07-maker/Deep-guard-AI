@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { api } from "@/lib/api";
 import { Loader2, Filter } from "lucide-react";
 
-const MODES = ["all", "webcam", "video", "audio"];
+const MODES = ["all", "webcam", "photo", "video", "audio"];
 
 export default function History() {
   const [items, setItems] = useState([]);

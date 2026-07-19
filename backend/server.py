@@ -203,6 +203,7 @@ async def _analyze_with_claude(images_b64: List[str], mode: str, extra_text: str
         "webcam": "Analyze this webcam frame for deepfake / face-swap artifacts.",
         "video":  "Analyze these sampled video frames for deepfake / face-swap artifacts.",
         "audio":  "Analyze this audio waveform / spectrogram image for voice-cloning / TTS deepfake artifacts. faces_detected=0 for audio.",
+        "photo":  "Analyze this still photo for deepfake / face-swap / AI-generated image artifacts. Consider: unnatural skin texture, warped features, GAN fingerprints, inconsistent lighting/shadows, diffusion-model artifacts, blended edges.",
     }.get(mode, "Analyze for deepfake artifacts.")
     if extra_text:
         user_prompt = f"{user_prompt}\n{extra_text}"
@@ -271,6 +272,21 @@ async def detect_frame(payload: FrameInput, user: User = Depends(get_current_use
         det = await _persist_detection(user.user_id, "webcam", parsed, latency_ms, thumb)
         return det.model_dump(mode="json")
     return {**parsed, "latency_ms": latency_ms, "mode": "webcam"}
+
+class PhotoInput(BaseModel):
+    image_base64: str
+    filename: Optional[str] = None
+
+@api_router.post("/detect/photo")
+async def detect_photo(payload: PhotoInput, user: User = Depends(get_current_user)):
+    b64 = _clean_b64(payload.image_base64)
+    start = datetime.now(timezone.utc)
+    parsed = await _analyze_with_claude([b64], mode="photo",
+                                        extra_text=f"Filename: {payload.filename or 'upload'}.")
+    latency_ms = int((datetime.now(timezone.utc) - start).total_seconds() * 1000)
+    thumb = b64[:200000]
+    det = await _persist_detection(user.user_id, "photo", parsed, latency_ms, thumb)
+    return det.model_dump(mode="json")
 
 class VideoFramesInput(BaseModel):
     frames_base64: List[str]  # sampled frames extracted client-side
