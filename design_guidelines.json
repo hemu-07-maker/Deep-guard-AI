@@ -1,0 +1,111 @@
+{
+  "project_name": "DeepGuard AI",
+  "theme": "dark",
+  "aesthetic": "Cyber/Security Threat Intel, SOC Dashboard, Forensic Analysis",
+  "typography": {
+    "headings": {
+      "font_family": "Outfit",
+      "import_url": "https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&display=swap",
+      "style": "font-bold tracking-tight",
+      "usage": "Marketing landing page hero headings, main dashboard page titles."
+    },
+    "body": {
+      "font_family": "IBM Plex Sans",
+      "import_url": "https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500&display=swap",
+      "style": "font-normal leading-relaxed",
+      "usage": "General body text, descriptions, labels."
+    },
+    "metrics_and_data": {
+      "font_family": "JetBrains Mono",
+      "import_url": "https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap",
+      "style": "font-medium tracking-tight uppercase",
+      "usage": "FPS counters, latency, probability percentages, REAL/FAKE verdict, table data, timestamps."
+    },
+    "forbidden_fonts": ["Inter", "Roboto", "Space Grotesk"]
+  },
+  "colors": {
+    "background": {
+      "base": "#050505",
+      "surface": "#0F172A",
+      "panel": "rgba(255, 255, 255, 0.03)"
+    },
+    "text": {
+      "primary": "#F8FAFC",
+      "secondary": "#94A3B8",
+      "muted": "#64748B"
+    },
+    "accent": {
+      "threat_fake": "#FF3B30",
+      "safe_real": "#00E676",
+      "neutral_info": "#00DDEB",
+      "warning": "#FBBF24"
+    },
+    "borders": {
+      "subtle": "rgba(255, 255, 255, 0.1)",
+      "focus": "#60A5FA"
+    }
+  },
+  "visual_enhancers": {
+    "surfaces": "Tactical Minimalism. Use sharp edges (rounded-none or rounded-sm max). Panels should use bg-white/5 (or similar Tailwind opacity) with a 1px solid border of border-white/10. No soft drop shadows; rely on crisp 1px borders to separate elements.",
+    "textures": "Incorporate a subtle CRT scanline effect (using CSS repeating-linear-gradient) or grain noise overlay over the webcam/video feed area to emphasize the 'forensic tool' aspect.",
+    "glows": "Use subtle neon glows on critical indicators (e.g., REAL/FAKE verdict badges) using drop-shadow-[0_0_8px_rgba(255,59,48,0.5)] for threats.",
+    "glassmorphism": "Reserved ONLY for floating elements like sticky headers or modal popups: use backdrop-blur-xl bg-black/60 with a crisp inner border. Do not use for standard cards."
+  },
+  "grids_and_layouts": {
+    "dashboard": "Mode B (High Density Grid). Use dense, compact spacing (gap-4). Example: grid-cols-1 md:grid-cols-4 lg:grid-cols-12. The main webcam/video feed should take priority (e.g., col-span-8), surrounded by smaller metric widgets (col-span-4).",
+    "landing_page": "Mode A (Tetris Grid). Asymmetric blocks with generous negative space (py-24, py-32) and large typography."
+  },
+  "components": {
+    "buttons": "Tactical and sharp. Minimal padding, 1px solid border. Hover states should slide-in a background color or invert text/bg. No pill shapes.",
+    "gauges_and_charts": "Use Recharts for waveforms, timelines, and fake probability gauges. Color code strictly: Red (#FF3B30) for Fake > 50%, Green (#00E676) for Real < 50%.",
+    "tables": "Dense rows for detection history. Use monospace font for numerical columns and hashes. Apply border-collapse with subtle border-b border-white/10.",
+    "badges": "REAL/FAKE final verdict badge should be high-contrast: text-white bg-red-600/20 border border-red-500 for Fake, and equivalent green for Real."
+  },
+  "motion": {
+    "telemetry": "Live update counters should have a very subtle Framer Motion color flash or number scramble effect on value change.",
+    "status": "Include a blinking 'Live' or 'REC' dot (animate-pulse) next to the webcam feed.",
+    "page_transitions": "Instant or very fast (0.15s ease-out) to mimic a high-performance terminal UI."
+  },
+  "accessibility": {
+    "contrast": "Ensure all text on dark panels passes WCAG AA. Red and Green accents must be lightened appropriately when used as text.",
+    "prefers_reduced_motion": "Disable pulsing and flashy telemetry animations if user prefers reduced motion.",
+    "testing": "All interactive elements MUST include a `data-testid` attribute."
+  },
+  "media": {
+    "image_urls": {
+      "landing_hero_bg": {
+        "url": "https://images.pexels.com/photos/5380682/pexels-photo-5380682.jpeg",
+        "description": "SOC analyst in dark room. Use as background for the landing page hero with a heavy bg-black/70 to bg-black/90 gradient overlay."
+      },
+      "facial_recognition_demo": {
+        "url": "https://images.pexels.com/photos/8090149/pexels-photo-8090149.jpeg",
+        "description": "Woman with laser scan overlay. Use as a dummy placeholder for the live webcam feed or video upload detection panel."
+      }
+    }
+  },
+  "instructions_to_main_agent": [
+    "Read this JSON carefully. This is a cyber-security threat intel dashboard, not a generic SaaS app.",
+    "Install Tailwind CSS, configure custom colors in tailwind.config.js matching the hex codes provided.",
+    "Import Outfit, IBM Plex Sans, and JetBrains Mono from Google Fonts in index.css.",
+    "Install 'recharts' for the analytics page and dashboard gauges.",
+    "Install 'lucide-react' or '@phosphor-icons/react' for UI iconography.",
+    "Install 'framer-motion' for telemetry micro-interactions.",
+    "Install 'sonner' for toast notifications.",
+    "Build a layout with a Sidebar navigation for the dashboard.",
+    "Implement the landing page with the 'landing_hero_bg' image, large Outfit typography, and a clear CTA to the Google login screen.",
+    "For the main dashboard, mock the webcam component using 'facial_recognition_demo' image. Overlay a CSS-based bounding box or scanning line using Framer Motion to simulate real-time detection.",
+    "Implement rich data visualizations using JetBrains Mono for all numeric values (FPS, latency ms, Fake Probability %).",
+    "Ensure 'data-testid' is present on all interactive elements like buttons, inputs, and tabs.",
+    "DO NOT use 'Inter', 'Roboto', or 'Space Grotesk'."
+  ],
+  "UNIVERSAL_GUIDELINES_FOR_MAIN_AGENT": [
+    "Avoid the generic 'AI slop' aesthetic. DO NOT use generic purple-violet-on-white gradients.",
+    "Do NOT use pure black as a gradient; use it as a solid background or with subtle noise textures.",
+    "Create depth through 1px crisp borders and contrasting background opacities (bg-white/5), not soft drop shadows.",
+    "Do NOT apply 'transition: all'. Target specific properties (e.g., transition-colors, transition-transform).",
+    "Do NOT center align the app container in CSS.",
+    "Never use placeholder URLs (like via.placeholder.com). Use the provided image URLs.",
+    "Do NOT use transparent dropdown backgrounds; ensure all floating components have solid or heavily blurred dark backgrounds.",
+    "Never use AI assistant Emoji characters (🤖🧠💭) for icons. Use proper SVG icon libraries."
+  ]
+}
