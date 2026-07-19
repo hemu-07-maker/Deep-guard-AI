@@ -1,6 +1,8 @@
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import { useAuth } from "@/context/AuthContext";
 import { LayoutDashboard, Upload, History as HistoryIcon, BarChart3, LogOut, ShieldAlert, Radio } from "lucide-react";
+import AmbientParticles from "@/components/AmbientParticles";
+import PageTransition from "@/components/PageTransition";
 
 const NAV = [
   { to: "/dashboard", label: "Live Detection", icon: LayoutDashboard, testid: "nav-dashboard" },
@@ -14,9 +16,10 @@ export default function Layout() {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen text-slate-100 flex">
+    <div className="relative min-h-screen text-slate-100 flex">
+      <AmbientParticles />
       {/* Sidebar */}
-      <aside className="w-64 shrink-0 border-r border-white/10 bg-black/50 backdrop-blur-md flex flex-col">
+      <aside className="relative z-10 w-64 shrink-0 border-r border-white/10 bg-black/70 backdrop-blur-md flex flex-col">
         <div className="px-5 py-6 border-b border-white/10">
           <button onClick={() => navigate("/dashboard")} className="flex items-center gap-2 group" data-testid="sidebar-logo">
             <div className="relative">
@@ -81,12 +84,15 @@ export default function Layout() {
       </aside>
 
       {/* Content */}
-      <main className="flex-1 min-w-0 flex flex-col">
-        <div className="h-11 border-b border-white/10 bg-black/40 backdrop-blur px-5 flex items-center justify-between">
+      <main className="relative z-10 flex-1 min-w-0 flex flex-col">
+        <div className="h-11 border-b border-white/10 bg-black/60 backdrop-blur px-5 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <Radio className="w-3.5 h-3.5 text-red-500 animate-pulse" />
             <span className="font-mono text-[11px] uppercase tracking-widest text-slate-400">
               SYSTEM ONLINE // CLAUDE-SONNET-4.5 // WEB-CONSOLE
+            </span>
+            <span className="hidden md:inline font-mono text-[11px] uppercase tracking-widest text-cyan-400/80">
+              · TRACE ACTIVE
             </span>
           </div>
           <div className="font-mono text-[11px] text-slate-500" data-testid="clock">
@@ -94,7 +100,9 @@ export default function Layout() {
           </div>
         </div>
         <div className="flex-1 p-6 overflow-auto">
-          <Outlet />
+          <PageTransition>
+            <Outlet />
+          </PageTransition>
         </div>
       </main>
     </div>

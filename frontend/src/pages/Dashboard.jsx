@@ -3,6 +3,7 @@ import { toast } from "sonner";
 import { Camera, CameraOff, Save, ScanFace, Loader2 } from "lucide-react";
 import { api } from "@/lib/api";
 import { Verdict, Metric, Gauge } from "@/components/DetectionWidgets";
+import HudFrame from "@/components/HudFrame";
 
 const TICK_MS = 2600;
 
@@ -126,12 +127,13 @@ export default function Dashboard() {
 
       <div className="grid grid-cols-12 gap-4">
         {/* Camera feed */}
-        <div className="col-span-12 lg:col-span-8 panel relative overflow-hidden" data-testid="camera-panel">
+        <HudFrame className="col-span-12 lg:col-span-8">
+        <div className="panel relative overflow-hidden" data-testid="camera-panel">
           <div className="absolute top-3 left-3 z-10 flex items-center gap-2 font-mono text-[10px] uppercase tracking-widest text-cyan-300">
-            <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse" /> LIVE
+            <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse" /> LIVE · CH-01
           </div>
           <div className="absolute top-3 right-3 z-10 font-mono text-[10px] uppercase tracking-widest text-slate-400">
-            CH-01 · 640x360 · JPEG
+            640×360 · JPEG · CLAUDE-4.5
           </div>
           <div className="scanlines absolute inset-0 opacity-30 pointer-events-none" />
           <div className="aspect-video bg-black relative">
@@ -145,6 +147,12 @@ export default function Dashboard() {
               <div className="absolute inset-0 pointer-events-none">
                 {/* scan line */}
                 <div className="absolute inset-x-0 h-[2px] bg-cyan-400/70 animate-scan" style={{ boxShadow: "0 0 12px rgba(0,221,235,0.9)" }} />
+                {/* central reticle */}
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-24 h-24 border border-cyan-400/40 rounded-full">
+                  <div className="absolute inset-2 border border-cyan-400/20 rounded-full" />
+                  <div className="absolute top-1/2 left-0 right-0 h-px bg-cyan-400/30" />
+                  <div className="absolute left-1/2 top-0 bottom-0 w-px bg-cyan-400/30" />
+                </div>
                 {/* bounding boxes */}
                 {Array.from({ length: latest?.faces_detected || 0 }).slice(0, 4).map((_, i) => (
                   <div key={i} className="absolute border border-cyan-400/70"
@@ -167,7 +175,7 @@ export default function Dashboard() {
           </div>
           <canvas ref={canvasRef} className="hidden" />
           {latest?.reasoning && (
-            <div className="p-4 border-t border-white/10 bg-black/30">
+            <div className="p-4 border-t border-white/10 bg-black/40">
               <div className="font-mono text-[10px] uppercase tracking-widest text-slate-500 mb-1">FORENSIC NOTES</div>
               <div className="text-sm text-slate-300 leading-relaxed">{latest.reasoning}</div>
               {latest.artifacts?.length > 0 && (
@@ -182,6 +190,7 @@ export default function Dashboard() {
             </div>
           )}
         </div>
+        </HudFrame>
 
         {/* Right column widgets */}
         <div className="col-span-12 lg:col-span-4 space-y-4">
