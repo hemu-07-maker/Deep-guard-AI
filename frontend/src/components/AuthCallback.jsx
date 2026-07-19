@@ -1,10 +1,12 @@
 import { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { api } from "@/lib/api";
+import { useAuth } from "@/context/AuthContext";
 
 // REMINDER: DO NOT HARDCODE THE URL, OR ADD ANY FALLBACKS OR REDIRECT URLS, THIS BREAKS THE AUTH
 export default function AuthCallback() {
   const navigate = useNavigate();
+  const { setUser } = useAuth();
   const hasProcessed = useRef(false);
 
   useEffect(() => {
@@ -19,6 +21,8 @@ export default function AuthCallback() {
     (async () => {
       try {
         const r = await api.post("/auth/session", { session_id });
+        // Publish user into the auth context so sidebar/greeting render correctly
+        setUser?.(r.data);
         // Clean URL fragment
         window.history.replaceState({}, "", "/dashboard");
         navigate("/dashboard", { replace: true, state: { user: r.data } });
@@ -26,7 +30,7 @@ export default function AuthCallback() {
         navigate("/", { replace: true });
       }
     })();
-  }, [navigate]);
+  }, [navigate, setUser]);
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-black text-white">
