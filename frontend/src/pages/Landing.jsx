@@ -1,5 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { ShieldAlert, Radar, Waves, Eye, Zap, Activity } from "lucide-react";
+import Hero3D from "@/components/Hero3D";
+import TiltCard from "@/components/TiltCard";
 
 // REMINDER: DO NOT HARDCODE THE URL, OR ADD ANY FALLBACKS OR REDIRECT URLS, THIS BREAKS THE AUTH
 export default function Landing() {
@@ -13,16 +15,17 @@ export default function Landing() {
   return (
     <div className="relative min-h-screen text-white overflow-hidden">
       {/* HERO */}
-      <div className="relative">
+      <div className="relative min-h-[92vh]">
         <div
-          className="absolute inset-0 bg-cover bg-center"
+          className="absolute inset-0 bg-cover bg-center opacity-30"
           style={{
             backgroundImage:
               "url(https://images.pexels.com/photos/5380682/pexels-photo-5380682.jpeg)",
           }}
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/80 to-black" />
-        <div className="absolute inset-0 scanlines opacity-40" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/85 to-black" />
+        <Hero3D />
+        <div className="absolute inset-0 scanlines opacity-30 pointer-events-none" />
 
         <header className="relative z-10 max-w-7xl mx-auto px-8 py-6 flex items-center justify-between">
           <div className="flex items-center gap-2">
@@ -40,13 +43,13 @@ export default function Landing() {
           </button>
         </header>
 
-        <section className="relative z-10 max-w-7xl mx-auto px-8 pt-16 pb-32">
+        <section className="relative z-10 max-w-7xl mx-auto px-8 pt-8 pb-32">
           <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-widest text-cyan-300 border border-cyan-500/30 bg-cyan-500/5 px-3 py-1.5 mb-8">
+            <div className="inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-widest text-cyan-300 border border-cyan-500/30 bg-cyan-500/5 backdrop-blur px-3 py-1.5 mb-8">
               <span className="w-1.5 h-1.5 bg-cyan-400 rounded-full animate-pulse" />
               Multi-Modal Forensic Detection · Claude Sonnet 4.5
             </div>
-            <h1 className="font-display font-bold text-4xl sm:text-5xl lg:text-6xl leading-[1.05] tracking-tight">
+            <h1 className="font-display font-bold text-4xl sm:text-5xl lg:text-6xl leading-[1.05] tracking-tight drop-shadow-[0_2px_20px_rgba(0,0,0,0.9)]">
               See through the <span className="text-red-500 glow-threat">synthetic</span>.
               <br />
               Every frame. Every voice.
@@ -106,11 +109,11 @@ export default function Landing() {
             { icon: Activity, title: "Analytics Dashboard", body: "Fake/Real ratio, mode breakdown, timeline plots for every operator." },
             { icon: ShieldAlert, title: "Audit-Ready History", body: "Every detection is timestamped, immutable, exportable." },
           ].map(({ icon: I, title, body }) => (
-            <div key={title} className="panel p-5">
+            <TiltCard key={title} className="panel p-5">
               <I className="w-5 h-5 text-cyan-400 mb-4" />
               <div className="font-display font-semibold text-lg">{title}</div>
               <div className="text-sm text-slate-400 mt-2 leading-relaxed">{body}</div>
-            </div>
+            </TiltCard>
           ))}
         </div>
       </section>
