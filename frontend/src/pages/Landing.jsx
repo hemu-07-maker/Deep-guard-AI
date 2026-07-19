@@ -47,7 +47,7 @@ export default function Landing() {
           <div className="max-w-3xl">
             <div className="inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-widest text-cyan-300 border border-cyan-500/30 bg-cyan-500/5 backdrop-blur px-3 py-1.5 mb-8">
               <span className="w-1.5 h-1.5 bg-cyan-400 rounded-full animate-pulse" />
-              Multi-Modal Forensic Detection · Claude Sonnet 4.5
+              Multi-Modal Forensic Detection
             </div>
             <h1 className="font-display font-bold text-4xl sm:text-5xl lg:text-6xl leading-[1.05] tracking-tight drop-shadow-[0_2px_20px_rgba(0,0,0,0.9)]">
               AI can fake anything.
@@ -174,7 +174,7 @@ export default function Landing() {
           </div>
         </div>
         <div className="mt-10 font-mono text-[10px] uppercase tracking-widest text-slate-600">
-          DeepGuard AI · Powered by Anthropic Claude Sonnet 4.5
+          DeepGuard AI · Multi-Modal Deepfake Detection
         </div>
       </section>
     </div>
